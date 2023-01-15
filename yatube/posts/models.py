@@ -29,6 +29,6 @@ class Post(models.Model):
         related_name='posts',
         related_query_name='publication'
     )
-    
+
     class Meta:
         ordering = ['-pub_date']
