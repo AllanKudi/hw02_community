@@ -1,4 +1,7 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% block title %}
+  Последние обновления на сайте
+{% endblock %}
 {% block content %}
 <div class="container">   
   <h1>Последние обновления на сайте</h1>
@@ -14,7 +17,7 @@
   </ul>
   <p>{{ post.text }}</p>
   {% if post.group %}
-    <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a> <!-- group_posts or group_list -->
+    <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
   {% endif %}
   {% if not forloop.last %}
     <hr>

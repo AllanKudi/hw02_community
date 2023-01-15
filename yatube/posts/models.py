@@ -26,5 +26,9 @@ class Post(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name='posts'
+        related_name='posts',
+        related_query_name='publication'
     )
+    
+    class Meta:
+        ordering = ['-pub_date']

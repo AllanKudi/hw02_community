@@ -2,21 +2,19 @@ from django.shortcuts import render, get_object_or_404
 
 from .models import Post, Group
 
+POSTS_FILTER: int = 10
 
-# Главная страница
 def index(request):
-    posts = Post.objects.order_by('-pub_date')[:10]
-    # В словаре context отправляем информацию в шаблон
+    posts = Post.objects.all()[:POSTS_FILTER]
     context = {
         'posts': posts,
     }
     return render(request, 'posts/index.html', context)
 
 
-# Страница, на которой будут посты, отфильтрованные по группам
 def group_list(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
+    posts = group.posts.all()
     context = {
         'group': group,
         'posts': posts,
